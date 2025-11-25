@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>elektrosak.com - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+  <h1 class="logo"><a href="{{ url_for('index') }}">elektrosak.com</a></h1>
+        <nav>
+          <a href="{{ url_for('index') }}">Anasayfa</a>
+          <a href="{{ url_for('hakkimizda') }}">Hakkımızda</a>
+          <a href="{{ url_for('iletisim') }}">İletişim</a>
+          <a href="{{ url_for('cart') }}">Sepet ({{ session.get('cart')|length if session.get('cart') else 0 }})</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash">
+            {% for m in messages %}
+              <p>{{ m }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© {{ "now" | default('') }} sepetsak — Basit demo</p>
+      </div>
+    </footer>
+  </body>
+</html>

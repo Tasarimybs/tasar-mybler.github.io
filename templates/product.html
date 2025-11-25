@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+  <h2>{{ product.name }}</h2>
+  <img class="product-image" src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+  <p class="price">₺{{ product.price }}</p>
+
+  <p>Ürün açıklaması burada yer alır. (Demo)</p>
+
+  <h3>Yorumlar</h3>
+  {% if comments %}
+    <ul class="comments">
+      {% for c in comments %}
+        <li>
+          <strong>{{ c['name'] }}</strong> — <em>{{ c['rating'] }}/5</em>
+          <div>{{ c['message'] }}</div>
+          <small>{{ c['created_at'] }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Henüz yorum yok.</p>
+  {% endif %}
+
+  <h3>Yorum yaz</h3>
+  <form method="post" action="{{ url_for('product_detail', product_id=product.id) }}" class="comment-form">
+    <input name="name" placeholder="Adınız">
+    <select name="rating">
+      <option value="5">5</option>
+      <option value="4">4</option>
+      <option value="3">3</option>
+      <option value="2">2</option>
+      <option value="1">1</option>
+    </select>
+    <textarea name="message" rows="4" placeholder="Yorumunuz..."></textarea>
+    <button class="btn" type="submit">Gönder</button>
+  </form>
+
+{% endblock %}

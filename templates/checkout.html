@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Ödeme{% endblock %}
+
+{% block content %}
+  <h2>Sipariş Özeti</h2>
+  {% if items %}
+    <ul>
+      {% for it in items %}
+        <li>{{ it.product.name }} — {{ it.qty }} x ₺{{ it.product.price }} = ₺{{ it.subtotal }}</li>
+      {% endfor %}
+    </ul>
+    <p><strong>Toplam: ₺{{ total }}</strong></p>
+
+    <h3>Bilgiler</h3>
+    <form method="post">
+      <input name="name" placeholder="Adınız" required>
+      <input name="email" type="email" placeholder="E-posta" required>
+      <textarea name="address" placeholder="Adres" rows="3" required></textarea>
+      <button class="btn" type="submit">Siparişi Tamamla</button>
+    </form>
+  {% else %}
+    <p>Sepet boş.</p>
+  {% endif %}
+
+{% endblock %}

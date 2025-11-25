@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Başarılı{% endblock %}
+
+{% block content %}
+  <h2>Teşekkürler</h2>
+  <p>Mesajınız alındı. En kısa zamanda size döneceğiz.</p>
+  <p><a href="{{ url_for('index') }}" class="btn">Anasayfaya Dön</a></p>
+{% endblock %}

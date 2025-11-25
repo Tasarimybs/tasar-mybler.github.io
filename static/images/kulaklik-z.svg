@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="12" fill="#fff7ee"/>
+  <path d="M50 120 C50 80,150 80,150 120" stroke="#f7b267" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <text x="100" y="95" font-size="14" text-anchor="middle" fill="#d97706">Kulaklık Z</text>
+</svg>

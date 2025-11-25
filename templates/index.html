@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Anasayfa{% endblock %}
+
+{% block content %}
+  <h2>Anasayfa</h2>
+  <p>Hoşgeldiniz! Sepetsak demo mağazasına göz atın.</p>
+
+  <section class="products">
+    {% for p in products %}
+      <article class="product">
+        <img class="product-image" src="{{ url_for('static', filename=p.image) }}" alt="{{ p.name }}">
+        <h3>{{ p.name }}</h3>
+        <p class="price">₺{{ p.price }}</p>
+        <div class="actions">
+          <form method="post" action="{{ url_for('add_to_cart', product_id=p.id) }}" style="display:inline">
+            <button type="submit" class="btn">Sepete Ekle</button>
+          </form>
+          <a class="btn btn-outline" href="{{ url_for('product_detail', product_id=p.id) }}">Detay</a>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+
+{% endblock %}
